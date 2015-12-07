@@ -4,8 +4,12 @@
   "description": "The new Zanata React application",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server -d --progress --colors --inline --hot --port 8000",
+    "start": "npm run build:icons && npm run hot-dev-server",
     "build": "webpack",
+    "build:icons": "npm run svg && npm run icons",
+    "icons": "node scripts/createIconsComponent",
+    "hot-dev-server": "webpack-dev-server -d --progress --colors --inline --hot --port 8000",
+    "svg": "svg-sprite -sD src/components/Icons --symbol-dest '' --ss icons.svg --si src/components/Icons/svgs/*.svg",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,10 +28,12 @@
   "dependencies": {
     "atomic-loader": "^0.1.2",
     "classnames": "^2.2.1",
+    "flat": "^1.6.0",
     "history": "^1.13.1",
     "humps": "^1.0.0",
     "isomorphic-fetch": "^2.2.0",
-    "lodash": "^3.10.1",
+    "lodash.merge": "^3.3.2",
+    "lodash.values": "^3.0.0",
     "normalizr": "^1.4.0",
     "react": "^0.14.3",
     "react-a11y": "^0.2.8",
@@ -40,6 +46,7 @@
     "redux-logger": "^2.0.4",
     "redux-router": "^1.0.0-beta3",
     "redux-thunk": "^1.0.0",
+    "validator": "^4.3.0",
     "zanata-ui": "^1.0.11"
   },
   "devDependencies": {
@@ -63,6 +70,7 @@
     "redux-devtools-dock-monitor": "^1.0.0-beta-3",
     "redux-devtools-log-monitor": "^1.0.0-beta-3",
     "style-loader": "^0.13.0",
+    "svg-sprite": "^1.2.16",
     "webpack": "^1.12.8",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"

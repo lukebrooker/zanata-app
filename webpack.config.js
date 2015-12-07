@@ -23,7 +23,7 @@ module.exports = {
   ],
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loader: 'atomic-loader?configPath=' + __dirname + '/atomicCssConfig.js!babel-loader',
       exclude: /node_modules/,
       include: path.join(__dirname, 'src')
