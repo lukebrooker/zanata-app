@@ -3,10 +3,8 @@ import merge from 'lodash.merge'
 import { mergeClasses } from '../utils'
 
 let classes = {
-  root: {
-    d: 'D(ib)',
-    pos: 'Pos(r)'
-  }
+  d: 'D(ib)',
+  pos: 'Pos(r)'
 }
 
 export default class Icon extends Component {
@@ -41,7 +39,7 @@ export default class Icon extends Component {
       <span {...props} className={mergeClasses(newClasses, theme)}>
         <svg
           dangerouslySetInnerHTML={{ __html: svgIcon }}
-          className='StretchedBox Mah(100%) Maw(100%) Fill(cc)'
+          className='Pos(a) StretchedBox Mah(100%) Maw(100%) Fill(cc)'
         />
       </span>
     )

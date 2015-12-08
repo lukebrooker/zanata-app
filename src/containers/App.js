@@ -4,67 +4,151 @@ import a11y from 'react-a11y'
 // import { pushState } from 'redux-router'
 import Icons from '../components/Icons'
 import Nav from '../components/Nav'
+import Header from '../components/Header'
 import View from '../components/View'
 
-const navItems = [
-  {
-    icon: 'zanata',
-    link: './',
-    title: 'Zanata'
-  },
-  {
-    icon: 'search',
-    link: 'search',
-    title: 'Search'
-  },
-  {
-    icon: 'user',
-    link: 'user/:uid',
-    title: 'Profile'
-  },
-  {
-    icon: 'statistics',
-    link: 'activity',
-    title: 'Activity'
-  },
-  {
-    icon: 'project',
-    link: 'projects',
-    title: 'Projects'
-  },
-  {
-    icon: 'settings',
-    link: 'settings',
-    title: 'Settings'
-  }
-]
+const navItems = {
+  logo: [
+    {
+      icon: 'zanata',
+      link: './',
+      title: 'Zanata'
+    }
+  ],
+  public: [
+    {
+      icon: 'search',
+      link: './search',
+      title: 'Search'
+    }
+  ],
+  // loggedout: [
+  //   {
+  //     small: true,
+  //     icon: 'import',
+  //     link: 'login',
+  //     title: 'Log In'
+  //   },
+  //   {
+  //     small: true,
+  //     icon: 'upload',
+  //     link: 'singup',
+  //     title: 'Sign Up'
+  //   }
+  // ],
+  loggedin: [
+    {
+      small: true,
+      icon: 'statistics',
+      link: './activity',
+      title: 'Activity'
+    },
+    {
+      small: true,
+      icon: 'project',
+      link: './projects',
+      title: 'Projects'
+    },
+    {
+      small: true,
+      icon: 'folder',
+      link: './groups',
+      title: 'Groups'
+    },
+    {
+      small: true,
+      icon: 'user',
+      link: 'user/:uid',
+      title: 'Profile'
+    },
+    {
+      icon: 'settings',
+      link: './settings',
+      title: 'Settings'
+    },
+    // {
+    //   icon: 'admin',
+    //   link: 'admin',
+    //   title: 'Admin'
+    // },
+    {
+      icon: 'logout',
+      link: './logout',
+      title: 'Log Out'
+    }
+  ],
+  more: [
+    {
+      small: true,
+      icon: 'ellipsis',
+      link: '',
+      title: 'More'
+    }
+  ],
+  extra: [
+    {
+      icon: 'help',
+      link: './help',
+      title: 'Help'
+    },
+    {
+      icon: 'info',
+      link: './about',
+      title: 'About'
+    }
+  ]
+}
 
 if (process.env.NODE_ENV === 'development') a11y(React)
 
 class App extends Component {
   render () {
+    const classes = {
+      h: 'H(100vh)',
+      ov: 'Ov(h)',
+      fld: 'Fld(c) Fld(r)--sm'
+    }
     const {
-      children,
       ...props
     } = this.props
     return (
-      <View {...props} className='H(100%) Ov(h) Fld(r)--sm'>
+      <View {...props} theme={classes}>
         <Icons />
-        <Nav items={navItems} />
-        <View className='Flx(expand)'>
-          <View>
-            <div>Activity</div>
-            <div>Some text and things</div>
-            <div className='Fz(msn1)'>Negative 1</div>
-            <div className='Fz(ms0)'>Scale 0</div>
-            <div className='Fz(ms1)'>Scale 1</div>
-            <div className='Fz(ms2)'>Scale 2</div>
-            <div className='Fz(ms3)'>Scale 3</div>
-            <div className='Fz(ms4)'>Scale 4</div>
-            <div className='Fz(ms5)'>Scale 5</div>
-            <div className='Fz(ms6)'>Scale 6</div>
+        <Nav items={navItems} active='./activity' />
+        <View theme={{flxs: '', flx: 'Flx(flx1)'}}>
+          <Header title='Activity' />
+          <View theme={{
+            flxs: '',
+            ov: 'Ov(a)',
+            ovh: 'Ovx(h)',
+            ovs: 'Ovs(touch)'
+          }}>
+            <View theme={{p: 'P(rh) P(r1)--sm'}}>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </View>
           </View>
-          {children}
         </View>
       </View>
     )

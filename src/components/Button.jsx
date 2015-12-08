@@ -3,10 +3,12 @@ import { mergeClasses } from '../utils'
 
 const classes = {
   root: {
-    fz: 'Fz(i)',
+    ai: 'Ai(c)',
+    bd: 'Bd(0)',
     bgc: 'Bgc(i)',
     cur: 'Cur(p)',
-    bd: 'Bd(0)',
+    d: 'D(if)',
+    fz: 'Fz(i)',
     p: 'P(0)'
   }
 }

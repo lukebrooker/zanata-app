@@ -9,11 +9,12 @@ const classes = {
 
 const NavIcon = ({
   icon,
+  size,
   ...props
 }) => (
   <Icon
     name={icon}
-    size='1'
+    size={size}
     theme={classes}
     {...props}
   />

@@ -69,8 +69,10 @@ module.exports = {
       sh3: '0 11px 7px 0 rgba(0, 0, 0, 0.09), 0 13px 25px 0 rgba(0, 0, 0, 0.15)',
       sh4: '0 14px 12px 0 rgba(0, 0, 0, 0.085), 0 20px 40px 0 rgba(0, 0, 0, 0.15)',
       sh5: '0 17px 17px 0 rgba(0, 0, 0, 0.075), 0 27px 55px 0 rgba(0, 0, 0, 0.15)',
+      ish1: 'inset 0 1px 4px 0 rgba(0, 0, 0, 0.185)',
       // Flexbox
-      expand: '1 1 auto',
+      flx1: '1',
+      if: 'inline-flex',
       // Defaults
       i: 'inherit'
     },
