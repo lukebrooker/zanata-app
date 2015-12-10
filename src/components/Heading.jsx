@@ -1,5 +1,5 @@
 import React from 'react' // eslint-disable-line
-import { mergeClasses } from '../utils'
+import { flattenClasses } from '../utils'
 
 const Heading = ({
   children,
@@ -8,13 +8,15 @@ const Heading = ({
   ...props
 }) => {
   const classes = {
-    c: 'C(dark)',
-    m: 'M(0)',
-    fz: 'Fz(ms0)',
-    fw: 'Fw(i)',
-    lh: 'Lh(1)'
+    base: {
+      c: 'C(pri)',
+      m: 'M(0)',
+      fz: 'Fz(ms0)',
+      fw: 'Fw(i)',
+      lh: 'Lh(1)'
+    }
   }
-  const headingClasses = mergeClasses(classes, theme)
+  const headingClasses = flattenClasses(classes, theme)
   return (<h1 {...props} className={headingClasses} >
     {children}
   </h1>)

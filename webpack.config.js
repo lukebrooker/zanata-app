@@ -12,6 +12,11 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx', '.css']
   },
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true,
+    stats: { colors: true }
+  },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),

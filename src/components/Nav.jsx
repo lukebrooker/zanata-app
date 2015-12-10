@@ -1,14 +1,16 @@
 import React from 'react'
 import NavItem from './NavItem'
-import { mergeClasses } from '../utils'
+import { flattenClasses } from '../utils'
 
 const classes = {
-  root: {
+  base: {
     bgc: 'Bgc(pri)',
     bxsh: 'Bxsh(ish1)',
     d: 'D(f)',
     fld: 'Fld(c)--sm',
-    or: 'Or(1) Or(0)--sm'
+    flxs: 'Flxs(0)',
+    or: 'Or(1) Or(0)--sm',
+    ov: 'Ov(h)'
   }
 }
 
@@ -19,7 +21,7 @@ const Nav = ({
 }) => (
   <nav
     {...props}
-    className={mergeClasses(classes.root)}
+    className={flattenClasses(classes)}
   >
     {Object.keys(items).map((section) => (
       (section === 'extra') ? null

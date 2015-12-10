@@ -73,6 +73,13 @@ module.exports = {
       // Flexbox
       flx1: '1',
       if: 'inline-flex',
+      // Transitions
+      eo: 'transform .3s cubic-bezier(0.19, 1, 0.22, 1), opacity .3s cubic-bezier(0.19, 1, 0.22, 1)', // Ease out
+      eib: 'transform .3s cubic-bezier(0.6, -0.28, 0.735, 0.045), opacity .3s cubic-bezier(0.6, -0.28, 0.735, 0.045)',  // Ease in back
+      eob: 'transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity .3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',  // Ease out back
+      aeo:  'all .3s cubic-bezier(0.19, 1, 0.22, 1)',
+      aeib: 'all .3s cubic-bezier(0.6, -0.28, 0.735, 0.045)',
+      aeob: 'all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
       // Defaults
       i: 'inherit'
     },
@@ -80,7 +87,20 @@ module.exports = {
       'Lh(1.5)',
       'Ff(zsans)',
       'H(100%)',
-      'M(0)'
+      'M(0)',
+      // These are needed for generated icon classes
+      'W(ms1)',
+      'W(ms2)',
+      'W(ms3)',
+      'W(ms4)',
+      'W(ms5)',
+      'W(ms6)',
+      'H(ms1)',
+      'H(ms2)',
+      'H(ms3)',
+      'H(ms4)',
+      'H(ms5)',
+      'H(ms6)'
     ]
   }
 }

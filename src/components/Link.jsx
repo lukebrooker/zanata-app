@@ -1,15 +1,18 @@
 import React from 'react' // eslint-disable-line
-import { mergeClasses } from '../utils'
+import { flattenClasses } from '../utils'
+import { Link as RouterLink } from 'react-router'
 
 const classes = {
-  bd: 'Bdb(bd2) Bdbc(t)',
-  bgc: 'Bgc(i)',
-  c: 'C(pri)',
-  cur: 'Cur(p)',
-  fz: 'Fz(i)',
-  td: 'Td(n)',
-  hover: {
-    bd: 'Bdbc(pri):h'
+  base: {
+    bd: 'Bdb(bd2) Bdbc(t)',
+    bgc: 'Bgc(i)',
+    c: 'C(pri)',
+    cur: 'Cur(p)',
+    fz: 'Fz(i)',
+    td: 'Td(n)',
+    hover: {
+      bd: 'Bdbc(pri):h'
+    }
   }
 }
 
@@ -19,13 +22,13 @@ const Link = ({
   link,
   ...props
 }) => (
-  <a
-    href={link}
+  <RouterLink
+    to={link}
+    className={flattenClasses(classes, theme)}
     {...props}
-    className={mergeClasses(classes, theme)}
   >
     {children}
-  </a>
+  </RouterLink>
 )
 
 export default Link

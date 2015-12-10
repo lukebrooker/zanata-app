@@ -8,7 +8,7 @@
     "build": "webpack",
     "build:icons": "npm run svg && npm run icons",
     "icons": "node scripts/createIconsComponent",
-    "hot-dev-server": "webpack-dev-server -d --progress --colors --inline --hot --port 8000",
+    "hot-dev-server": "webpack-dev-server -d --progress --inline --hot --port 8000",
     "svg": "svg-sprite -sD src/components/Icons --symbol-dest '' --ss icons.svg --si src/components/Icons/svgs/*.svg",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -44,7 +44,7 @@
     "react-router": "^1.0.0",
     "redux": "^3.0.4",
     "redux-logger": "^2.0.4",
-    "redux-router": "^1.0.0-beta3",
+    "redux-simple-router": "^1.0.0",
     "redux-thunk": "^1.0.0",
     "validator": "^4.3.0",
     "zanata-ui": "^1.0.11"

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import a11y from 'react-a11y'
-// import { connect } from 'react-redux'
-// import { pushState } from 'redux-router'
+import { connect } from 'react-redux'
 import Icons from '../components/Icons'
 import Nav from '../components/Nav'
 import Header from '../components/Header'
@@ -11,14 +10,14 @@ const navItems = {
   logo: [
     {
       icon: 'zanata',
-      link: './',
+      link: '/',
       title: 'Zanata'
     }
   ],
   public: [
     {
       icon: 'search',
-      link: './search',
+      link: '/search',
       title: 'Search'
     }
   ],
@@ -40,30 +39,30 @@ const navItems = {
     {
       small: true,
       icon: 'statistics',
-      link: './activity',
+      link: '/activity',
       title: 'Activity'
     },
     {
       small: true,
       icon: 'project',
-      link: './projects',
+      link: '/projects',
       title: 'Projects'
     },
     {
       small: true,
       icon: 'folder',
-      link: './groups',
+      link: '/groups',
       title: 'Groups'
     },
     {
       small: true,
       icon: 'user',
-      link: 'user/:uid',
+      link: '/user/:uid',
       title: 'Profile'
     },
     {
       icon: 'settings',
-      link: './settings',
+      link: '/settings',
       title: 'Settings'
     },
     // {
@@ -73,7 +72,7 @@ const navItems = {
     // },
     {
       icon: 'logout',
-      link: './logout',
+      link: '/logout',
       title: 'Log Out'
     }
   ],
@@ -88,12 +87,12 @@ const navItems = {
   extra: [
     {
       icon: 'help',
-      link: './help',
+      link: '/help',
       title: 'Help'
     },
     {
       icon: 'info',
-      link: './about',
+      link: '/about',
       title: 'About'
     }
   ]
@@ -102,51 +101,51 @@ const navItems = {
 if (process.env.NODE_ENV === 'development') a11y(React)
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+  }
+  handleChange = (nextValue) => {
+    this.props.pushState(null, `/${nextValue}`)
+  }
   render () {
-    const classes = {
-      h: 'H(100vh)',
-      ov: 'Ov(h)',
-      fld: 'Fld(c) Fld(r)--sm'
+    const theme = {
+      base: {
+        h: 'H(100vh)',
+        fld: 'Fld(c) Fld(r)--sm'
+      }
     }
     const {
+      children,
+      pageTitle,
+      activePath,
       ...props
     } = this.props
     return (
-      <View {...props} theme={classes}>
+      <View {...props} theme={theme}>
         <Icons />
-        <Nav items={navItems} active='./activity' />
-        <View theme={{flxs: '', flx: 'Flx(flx1)'}}>
-          <Header title='Activity' />
-          <View theme={{
+        <Nav items={navItems} active={activePath} />
+        <View theme={{
+          base: {
             flxs: '',
-            ov: 'Ov(a)',
-            ovh: 'Ovx(h)',
-            ovs: 'Ovs(touch)'
+            flx: 'Flx(flx1)',
+            ov: 'Ov(h)'
+          }
+        }}>
+          <Header title={pageTitle} />
+          <View theme={{
+            base: {
+              flxs: '',
+              ov: 'Ov(a)',
+              ovh: 'Ovx(h)',
+              ovs: 'Ovs(touch)'
+            }
           }}>
-            <View theme={{p: 'P(rh) P(r1)--sm'}}>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <View theme={{
+              base: {
+                p: 'P(rh) P(r1)--sm'
+              }
+            }}>
+              {children}
             </View>
           </View>
         </View>
@@ -155,14 +154,10 @@ class App extends Component {
   }
 }
 
-export default App
+function mapStateToProps (state) {
+  return {
+    activePath: state.routing.path
+  }
+}
 
-// function mapStateToProps (state) {
-//   return {
-//     inputValue: state.router.location.pathname.substring(1)
-//   }
-// }
-//
-// export default connect(mapStateToProps, {
-//   pushState
-// })(App)
+export default connect(mapStateToProps)(App)

@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from './Icon'
 
 const classes = {
-  root: {
+  base: {
     d: 'D(b)'
   }
 }

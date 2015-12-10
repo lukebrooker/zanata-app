@@ -1,8 +1,8 @@
 import React from 'react' // eslint-disable-line
-import { mergeClasses } from '../utils'
+import { flattenClasses } from '../utils'
 
 const classes = {
-  root: {
+  base: {
     ai: 'Ai(c)',
     bd: 'Bd(0)',
     bgc: 'Bgc(i)',
@@ -16,7 +16,7 @@ const classes = {
 const Button = ({ children, theme, ...props }) => (
   <button
     {...props}
-    className={mergeClasses(classes, theme)}
+    className={flattenClasses(classes, theme)}
   >
     {children}
   </button>

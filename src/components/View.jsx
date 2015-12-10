@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react' // eslint-disable-line
-import { mergeClasses } from '../utils'
+import { flattenClasses } from '../utils'
 
 const View = ({
   items,
@@ -8,14 +8,16 @@ const View = ({
   ...props
 }) => {
   const classes = {
-    ai: 'Ai(st)',
-    d: 'D(f)',
-    fld: 'Fld(c)',
-    flxs: 'Flxs(0)'
+    base: {
+      ai: 'Ai(st)',
+      d: 'D(f)',
+      fld: 'Fld(c)',
+      flxs: 'Flxs(0)'
+    }
   }
   return (
     <div
-      className={mergeClasses(classes, theme)}
+      className={flattenClasses(classes, theme)}
       {...props}
     >
       { children }
