@@ -8,11 +8,10 @@ const NavItem = ({
   small,
   icon,
   active,
-  section,
   title,
   ...props
 }) => {
-  const logo = (section === 'logo')
+  const logo = (icon === 'zanata')
   const search = (link === 'search')
   const classes = {
     base: {

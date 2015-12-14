@@ -10,20 +10,20 @@
 .Bgc\(pri\) {
   background-color: #19a5da;
 }
-.Bgc\(i\) {
-  background-color: inherit;
-}
 .Bgc\(\#fff\.2\)\:h:hover {
   background-color: rgba(255,255,255,.2);
 }
 .Bgc\(white\) {
   background-color: white;
 }
-.Bxsh\(ish1\) {
-  box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.185);
+.Bgc\(i\) {
+  background-color: inherit;
 }
 .Bxsh\(sh1\) {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.185);
+}
+.Bxsh\(ish1\) {
+  box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.185);
 }
 .C\(pri\) {
   color: #19a5da;
@@ -34,23 +34,23 @@
 .C\(white\)\:h:hover {
   color: white;
 }
-.Cur\(p\) {
-  cursor: pointer;
-}
 .Cur\(d\) {
   cursor: default;
 }
+.Cur\(p\) {
+  cursor: pointer;
+}
 .D\(f\) {
   display: flex;
+}
+.D\(n\) {
+  display: none;
 }
 .D\(b\) {
   display: block;
 }
 .D\(ib\) {
   display: inline-block;
-}
-.D\(n\) {
-  display: none;
 }
 .Flx\(flx1\) {
   flex: 1;
@@ -79,8 +79,8 @@
 .Fw\(i\) {
   font-weight: inherit;
 }
-.Fz\(i\) {
-  font-size: inherit;
+.Fz\(ms1\) {
+  font-size: 1.2rem;
 }
 .Fz\(ms0\) {
   font-size: 1rem;
@@ -88,8 +88,8 @@
 .Fz\(msn2\) {
   font-size: 0.694rem;
 }
-.Fz\(ms1\) {
-  font-size: 1.2rem;
+.Fz\(i\) {
+  font-size: inherit;
 }
 .H\(100vh\) {
   height: 100vh;
@@ -218,6 +218,9 @@
   left: 0;
 }
 @media screen and (min-width: 29.375rem) {
+  .Bxsh\(n\)--sm {
+    box-shadow: none;
+  }
   .D\(f\)--sm {
     display: flex;
   }
