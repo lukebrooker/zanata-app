@@ -4,10 +4,12 @@ import { flattenClasses } from '../utils'
 const classes = {
   base: {
     ai: 'Ai(c)',
+    ap: 'Ap(n)',
     bd: 'Bd(0)',
     bgc: 'Bgc(i)',
     cur: 'Cur(p)',
     d: 'D(if)',
+    ff: 'Ff(i)',
     fz: 'Fz(i)',
     p: 'P(0)'
   }

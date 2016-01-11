@@ -4,14 +4,13 @@ import { Link as RouterLink } from 'react-router'
 
 const classes = {
   base: {
-    bd: 'Bdb(bd2) Bdbc(t)',
     bgc: 'Bgc(i)',
     c: 'C(pri)',
     cur: 'Cur(p)',
     fz: 'Fz(i)',
     td: 'Td(n)',
     hover: {
-      bd: 'Bdbc(pri):h'
+      td: 'Td(u):h'
     }
   }
 }

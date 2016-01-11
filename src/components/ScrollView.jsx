@@ -19,7 +19,8 @@ const ScrollView = ({
     <View theme={mergeClasses(classes, theme)}>
       <View theme={{
         base: {
-          p: 'P(rh) P(r1)--sm'
+          p: 'Py(r1) Px(rh) Px(r1)--sm',
+          w: 'W(100%)'
         }
       }}>
         {children}

@@ -21,7 +21,7 @@ function ms (value, unit) {
 
 /* eslint-disable */
 module.exports = {
-  cssDest: './src/index.css',
+  cssDest: './src/styles/atomic.css',
   configs: {
     breakPoints: {
       sm: '@media screen and (min-width: ' + pxToRem(470) + ')',
@@ -37,19 +37,25 @@ module.exports = {
       warning: 'hsl(27, 97%, 63%)',
       danger: 'hsl(353, 80%, 59%)',
       dark: 'hsl(212, 18%, 40%)',
+      muted: 'hsl(204, 18%, 69%)',
       neutral: 'hsl(195, 32%, 80%)',
       light: 'hsl(213, 44%, 95%)',
       // Borders
       bd1: 'solid 1px',
       bd2: 'solid 2px',
       // Rhythm
+      re: r(0.125),
       rq: r(0.25),
       rh: r(0.5),
       r3q: r(0.75),
       r1: r(1),
+      r1q: r(1.25),
       r1h: r(1.5),
       r2: r(2),
       r4: r(4),
+      r8: r(8),
+      r16: r(16),
+      r32: r(32),
       // Modular Scale
       msn2: ms(-2),
       msn1: ms(-1),
@@ -63,12 +69,15 @@ module.exports = {
       // Fonts
       zsans: '"Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif',
       zmono: '"Source Code Pro", Hack, Consolas, monaco, monospace',
+      // Border Radius
+      rnd: '500px',
       // Shadows
       sh1: '0 1px 4px 0 rgba(0, 0, 0, 0.185)',
       sh2: '0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.15)',
       sh3: '0 11px 7px 0 rgba(0, 0, 0, 0.09), 0 13px 25px 0 rgba(0, 0, 0, 0.15)',
       sh4: '0 14px 12px 0 rgba(0, 0, 0, 0.085), 0 20px 40px 0 rgba(0, 0, 0, 0.15)',
       sh5: '0 17px 17px 0 rgba(0, 0, 0, 0.075), 0 27px 55px 0 rgba(0, 0, 0, 0.15)',
+      shw: '0 0 15px 5px #fff',
       ish1: 'inset 0 1px 4px 0 rgba(0, 0, 0, 0.185)',
       // Flexbox
       flx1: '1',
@@ -89,12 +98,18 @@ module.exports = {
       'H(100%)',
       'M(0)',
       // These are needed for generated icon classes
+      'W(msn2)',
+      'W(msn1)',
+      'W(ms0)',
       'W(ms1)',
       'W(ms2)',
       'W(ms3)',
       'W(ms4)',
       'W(ms5)',
       'W(ms6)',
+      'H(msn2)',
+      'H(msn1)',
+      'H(ms0)',
       'H(ms1)',
       'H(ms2)',
       'H(ms3)',

@@ -12,24 +12,24 @@ const NavItem = ({
   ...props
 }) => {
   const logo = (icon === 'zanata')
-  const search = (link === 'search')
+  const search = (link === '/search')
   const classes = {
     base: {
-      bd: '',
       bgc: '',
       c: 'C(light)',
       d: 'D(n) D(f)--sm',
       fld: 'Fld(c)',
       ai: 'Ai(c)',
       flxg: 'Flxg(1) Flxg(0)--sm',
+      flxs: 'Flxs(0)',
       fz: 'Fz(msn2)',
       p: 'P(rq) Px(rq)--sm Py(rh)--sm',
       ta: 'Ta(c)',
       trs: 'Trs(aeo)',
       hover: {
         c: 'C(white):h',
-        bd: '',
-        bgc: 'Bgc(#fff.2):h'
+        bgc: 'Bgc(#fff.2):h',
+        td: 'Td(n)'
       }
     },
     active: {

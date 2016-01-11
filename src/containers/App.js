@@ -35,7 +35,7 @@ class App extends Component {
           title="Zanata"
           titleTemplate="%s | Zanata"
         />
-        <Nav active={activePath} auth='admin' />
+        <Nav active={activePath} auth='loggedin' />
         {children}
       </View>
     )
@@ -43,7 +43,6 @@ class App extends Component {
 }
 
 function mapStateToProps (state) {
-  console.log(state)
   return {
     activePath: state.routing.path
   }

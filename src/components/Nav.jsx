@@ -12,7 +12,7 @@ const items = [
   {
     icon: 'search',
     link: '/search',
-    title: 'Search',
+    title: 'Explore',
     auth: 'public'
   },
   {
@@ -86,13 +86,15 @@ const items = [
     icon: 'help',
     link: '/help',
     title: 'Help',
-    auth: 'public'
+    auth: 'public',
+    more: true
   },
   {
     icon: 'info',
     link: '/about',
     title: 'About',
-    auth: 'public'
+    auth: 'public',
+    more: true
   }
 ]
 
@@ -117,7 +119,7 @@ const Nav = ({
   //   logo: [...items.logo],
   //   ...items.loggedin
   // ]
-  const authState = auth || 'loggedout'
+  const authState = auth || 'loggedin'
   const admin = (auth === 'admin')
   return (
     <nav
@@ -125,8 +127,8 @@ const Nav = ({
       className={flattenClasses(classes)}
     >
       {items.map((item, itemId) =>
-        ((item.auth === 'public') || (item.auth === authState) ||
-          (item.auth === 'loggedin' && admin)) ? (
+        (((item.auth === 'public') || (item.auth === authState) ||
+          (item.auth === 'loggedin' && admin)) && !item.more) ? (
           <NavItem key={itemId}
             small={item.small}
             active={active === item.link}

@@ -12,10 +12,12 @@ const Header = ({
 }) => {
   const classes = {
     base: {
-      bxsh: 'Bxsh(sh1)',
+      bxsh: 'Bxsh(shw)',
+      bxz: 'Bxz(cb)', // For chrome bug that doesn't keep height of container
       d: 'D(f)',
       ai: 'Ai(c)',
-      p: 'Py(rq) Px(rh) P(r1)--sm'
+      p: 'Py(rq) Px(rh) P(r1)--sm',
+      pos: 'Pos(r)'
     }
   }
   const logoLinkTheme = {

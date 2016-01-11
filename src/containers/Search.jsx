@@ -1,55 +1,164 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import { flattenClasses } from '../utils'
+import { connect } from 'react-redux'
+import { pushPath } from 'redux-simple-router'
+import { flattenClasses, canGoBack } from '../utils'
 import Page from '../components/Page'
 import ScrollView from '../components/ScrollView'
+import View from '../components/View'
 import Heading from '../components/Heading'
 import Icon from '../components/Icon'
+import Button from '../components/Button'
+import TextInput from '../components/TextInput'
+import TeaserList from '../components/TeaserList'
+import { searchTextChanged, searchPageLoaded } from '../actions'
+
+const headerClasses = {
+  base: {
+    ai: 'Ai(c)',
+    bxsh: 'Bxsh(shw)',
+    bxz: 'Bxz(cb)', // For chrome bug that doesn't keep height of container
+    d: 'D(f)',
+    fz: 'Fz(ms1)--md',
+    jc: 'Jc(c)',
+    p: 'Py(rq) Px(rh) P(r1)--sm',
+    pos: 'Pos(r)'
+  }
+}
+const headingTheme = {
+  base: {
+    hidden: 'Hidden'
+  }
+}
+const searchViewTheme = {
+  base: {
+    ai: 'Ai(c)',
+    c: 'C(dark)',
+    fld: '',
+    pos: 'Pos(r)',
+    maw: 'Maw(r32)',
+    w: 'W(100%)'
+  }
+}
+const iconTheme = {
+  base: {
+    ai: 'Ai(c)',
+    c: 'C(neutral)',
+    fz: 'Fz(ms1) Fz(ms2)--sm',
+    jc: 'Jc(c)',
+    h: 'H(100%)',
+    l: 'Start(rq) Start(rh)--md',
+    m: 'Mstart(re) Mstart(0)--md',
+    pos: 'Pos(a)',
+    t: 'T(0)',
+    ta: 'Ta(c)',
+    w: 'W(ms1) W(ms2)--md'
+  }
+}
+const inputTheme = {
+  base: {
+    bdrs: 'Bdrs(rnd)',
+    p: 'Py(rq) Py(rh)--md Pstart(r1q) Pstart(r1h)--md Pend(rq)',
+    w: 'W(100%)'
+  }
+}
+const buttonTheme = {
+  base: {
+    c: 'C(pri)',
+    m: 'Mstart(rq)'
+  }
+}
+const scrollViewTheme = {
+  base: {
+    ai: 'Ai(c)'
+  }
+}
+const contentViewContainerTheme = {
+  base: {
+    maw: 'Maw(r32)',
+    m: 'Mx(a)',
+    w: 'W(100%)'
+  }
+}
 
 class Search extends Component {
+  componentWillMount () {
+    this.props.onSearchPageLoad()
+  }
   render () {
-    const headerClasses = {
-      base: {
-        bxsh: 'Bxsh(sh1) Bxsh(n)--sm',
-        d: 'D(f)',
-        ai: 'Ai(c)',
-        p: 'Py(rq) Px(rh) P(r1)--sm'
-      }
-    }
-    const headingTheme = {
-      base: {
-        hidden: 'Hidden'
-      }
-    }
-    const iconTheme = {
-      base: {
-        fz: 'Fz(ms1) Fz(ms2)--sm'
-      }
-    }
+    const {
+      onSearchCancelClick,
+      onSearchTextChange,
+      searchText,
+      searchResults = [],
+      ...props
+    } = this.props
     return (
       <Page>
         <Helmet title='Search' />
         <header className={flattenClasses(headerClasses)}>
           <Heading level='1' theme={headingTheme}>Search</Heading>
-          <div>
-            <Icon name='search' size='1' theme={iconTheme}/>
-            <input type="search" />
-          </div>
+          <View theme={searchViewTheme}>
+            <Icon name='search' theme={iconTheme}/>
+            <TextInput
+              autoFocus
+              type='search'
+              placeholder='Search Zanata…'
+              accessibilityLabel='Search Zanata'
+              theme={inputTheme}
+              onChange={onSearchTextChange}
+            />
+          <Button
+            theme={buttonTheme}
+            onClick={onSearchCancelClick}>
+            Cancel
+          </Button>
+          </View>
         </header>
-        <ScrollView>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis luctus nisi et eros bibendum lacinia. Curabitur sed est nec urna pretium vulputate ut eget lectus. In ultricies, tellus non vehicula malesuada, augue sem aliquet tellus, ut faucibus turpis ante quis nibh. Ut vel turpis tortor, a consectetur ipsum. Sed posuere commodo vestibulum. Pellentesque volutpat diam sem.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis luctus nisi et eros bibendum lacinia. Curabitur sed est nec urna pretium vulputate ut eget lectus. In ultricies, tellus non vehicula malesuada, augue sem aliquet tellus, ut faucibus turpis ante quis nibh. Ut vel turpis tortor, a consectetur ipsum. Sed posuere commodo vestibulum. Pellentesque volutpat diam sem.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis luctus nisi et eros bibendum lacinia. Curabitur sed est nec urna pretium vulputate ut eget lectus. In ultricies, tellus non vehicula malesuada, augue sem aliquet tellus, ut faucibus turpis ante quis nibh. Ut vel turpis tortor, a consectetur ipsum. Sed posuere commodo vestibulum. Pellentesque volutpat diam sem.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis luctus nisi et eros bibendum lacinia. Curabitur sed est nec urna pretium vulputate ut eget lectus. In ultricies, tellus non vehicula malesuada, augue sem aliquet tellus, ut faucibus turpis ante quis nibh. Ut vel turpis tortor, a consectetur ipsum. Sed posuere commodo vestibulum. Pellentesque volutpat diam sem.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis luctus nisi et eros bibendum lacinia. Curabitur sed est nec urna pretium vulputate ut eget lectus. In ultricies, tellus non vehicula malesuada, augue sem aliquet tellus, ut faucibus turpis ante quis nibh. Ut vel turpis tortor, a consectetur ipsum. Sed posuere commodo vestibulum. Pellentesque volutpat diam sem.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis luctus nisi et eros bibendum lacinia. Curabitur sed est nec urna pretium vulputate ut eget lectus. In ultricies, tellus non vehicula malesuada, augue sem aliquet tellus, ut faucibus turpis ante quis nibh. Ut vel turpis tortor, a consectetur ipsum. Sed posuere commodo vestibulum. Pellentesque volutpat diam sem.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis luctus nisi et eros bibendum lacinia. Curabitur sed est nec urna pretium vulputate ut eget lectus. In ultricies, tellus non vehicula malesuada, augue sem aliquet tellus, ut faucibus turpis ante quis nibh. Ut vel turpis tortor, a consectetur ipsum. Sed posuere commodo vestibulum. Pellentesque volutpat diam sem.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis luctus nisi et eros bibendum lacinia. Curabitur sed est nec urna pretium vulputate ut eget lectus. In ultricies, tellus non vehicula malesuada, augue sem aliquet tellus, ut faucibus turpis ante quis nibh. Ut vel turpis tortor, a consectetur ipsum. Sed posuere commodo vestibulum. Pellentesque volutpat diam sem.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis luctus nisi et eros bibendum lacinia. Curabitur sed est nec urna pretium vulputate ut eget lectus. In ultricies, tellus non vehicula malesuada, augue sem aliquet tellus, ut faucibus turpis ante quis nibh. Ut vel turpis tortor, a consectetur ipsum. Sed posuere commodo vestibulum. Pellentesque volutpat diam sem.</p>
+        <ScrollView theme={scrollViewTheme}>
+          <View theme={contentViewContainerTheme}>
+            {searchResults.map((list, key) => (
+              <TeaserList
+                items={list.items}
+                title={list.title}
+                type={list.type}
+                key={key}
+                filterable={!searchText}
+              />
+            ))}
+          </View>
         </ScrollView>
       </Page>
     )
   }
 }
 
-export default Search
+const mapStateToProps = (state) => {
+  return {
+    searchText: state.search.text,
+    searchResults: state.search.text
+      ? state.search.results : state.search.default
+  }
+}
+
+const mapDispatchToProps = (dispatch, {
+  history
+}) => {
+  return {
+    onSearchCancelClick: () => {
+      if (canGoBack) {
+        history.goBack()
+      } else {
+        dispatch(pushPath('/'))
+      }
+    },
+    onSearchTextChange: (event) => {
+      dispatch(searchTextChanged(event.target.value))
+    },
+    onSearchPageLoad: () => {
+      dispatch(searchPageLoaded())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search)

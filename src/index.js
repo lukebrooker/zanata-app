@@ -5,8 +5,9 @@ import { syncReduxAndRouter } from 'redux-simple-router'
 import { createHistory } from 'history'
 import Root from './containers/Root'
 import configureStore from './store/configureStore'
-import './base.css'
-import './index.css'
+import './styles/base.css'
+import './styles/atomic.css'
+import './styles/extras.css'
 
 const history = createHistory()
 const store = configureStore()
