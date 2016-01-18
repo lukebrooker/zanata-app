@@ -18,9 +18,9 @@ const ProjectTeaser = ({
   }
   return (
     <View theme={viewTheme}>
-      <View className='Mend(rh)'>
-        <Icon name='statistics' />
-      </View>
+      {/* <View className='Mend(rh)'>
+        TODO: Statistics Donut here
+      </View> */}
       <View theme={{ base: { fld: 'Fld(c) Fld(r)--md', flx: 'Flx(flx1)' } }}>
         <View>
           <Link to={details.username + '/' + details.slug}

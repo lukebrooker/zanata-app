@@ -1,4 +1,3 @@
-// import * as ActionTypes from '../actions'
 import { combineReducers } from 'redux'
 import { routeReducer } from 'redux-simple-router'
 import search from './search'

@@ -104,8 +104,8 @@ export default class FakeData {
           items: new FakeLaguageTeamsList(size).getItems()
         },
         {
-          title: 'Translators',
-          type: 'translators',
+          title: 'People',
+          type: 'people',
           items: new FakeTranslatorsList(size).getItems()
         }
       ]

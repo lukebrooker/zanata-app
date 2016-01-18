@@ -1,18 +1,15 @@
 import 'babel-polyfill'
 import React from 'react' // eslint-disable-line no-unused-vars
 import { render } from 'react-dom'
-import { syncReduxAndRouter } from 'redux-simple-router'
-import { createHistory } from 'history'
 import Root from './containers/Root'
-import configureStore from './store/configureStore'
+import configureStore, { routerMiddleware, history } from './store/configureStore' // eslint-disable-line
 import './styles/base.css'
 import './styles/atomic.css'
 import './styles/extras.css'
 
-const history = createHistory()
 const store = configureStore()
 
-syncReduxAndRouter(history, store)
+routerMiddleware.syncHistoryToStore(store)
 
 render(
   <Root store={store} history={history} />,

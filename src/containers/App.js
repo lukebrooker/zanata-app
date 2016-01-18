@@ -44,7 +44,7 @@ class App extends Component {
 
 function mapStateToProps (state) {
   return {
-    activePath: state.routing.path
+    activePath: state.routing.location.pathname
   }
 }
 

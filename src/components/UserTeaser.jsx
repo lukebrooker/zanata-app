@@ -2,6 +2,7 @@ import React from 'react' // eslint-disable-line
 import Link from '../components/Link'
 import View from '../components/View'
 import Icon from '../components/Icon'
+import { routeActions } from 'redux-simple-router'
 // import { flattenClasses } from '../utils'
 
 const UserTeaser = ({
@@ -18,7 +19,7 @@ const UserTeaser = ({
   }
   return (
     <View theme={viewTheme}>
-      <View theme={{ base: {fld: 'Fld(r)'} }}>
+      <View theme={{ base: {ai: 'Ai(c)', fld: 'Fld(r)'} }}>
         <img
           src={details.avatar}
           alt={details.username}

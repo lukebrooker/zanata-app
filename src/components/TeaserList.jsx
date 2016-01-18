@@ -32,7 +32,7 @@ const TeaserList = ({
     case 'languageTeams':
       TeaserComponent = LanguageTeamTeaser
       break
-    case 'translators':
+    case 'people':
       TeaserComponent = UserTeaser
       break
     default:

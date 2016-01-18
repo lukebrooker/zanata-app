@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
-import { pushPath } from 'redux-simple-router'
+import { routeActions } from 'redux-simple-router'
+import { isEmpty } from 'lodash'
 import { flattenClasses, canGoBack } from '../utils'
 import Page from '../components/Page'
 import ScrollView from '../components/ScrollView'
@@ -93,6 +94,7 @@ class Search extends Component {
       searchResults = [],
       ...props
     } = this.props
+    console.log(searchResults)
     return (
       <Page>
         <Helmet title='Search' />
@@ -106,6 +108,7 @@ class Search extends Component {
               placeholder='Search Zanata…'
               accessibilityLabel='Search Zanata'
               theme={inputTheme}
+              value={searchText}
               onChange={onSearchTextChange}
             />
           <Button
@@ -117,15 +120,18 @@ class Search extends Component {
         </header>
         <ScrollView theme={scrollViewTheme}>
           <View theme={contentViewContainerTheme}>
-            {searchResults.map((list, key) => (
-              <TeaserList
-                items={list.items}
-                title={list.title}
-                type={list.type}
-                key={key}
-                filterable={!searchText}
-              />
-            ))}
+            {isEmpty(searchResults)
+              ? (<div>No Results</div>)
+              : searchResults.map((list, key) => (
+                <TeaserList
+                  items={list.items}
+                  title={list.title}
+                  type={list.type}
+                  key={key}
+                  filterable={!searchText}
+                />
+              ))
+            }
           </View>
         </ScrollView>
       </Page>
@@ -135,8 +141,8 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    searchText: state.search.text,
-    searchResults: state.search.text
+    searchText: state.routing.location.query.q,
+    searchResults: state.routing.location.query.q
       ? state.search.results : state.search.default
   }
 }
@@ -147,13 +153,18 @@ const mapDispatchToProps = (dispatch, {
   return {
     onSearchCancelClick: () => {
       if (canGoBack) {
-        history.goBack()
+        dispatch(routeActions.goBack())
       } else {
-        dispatch(pushPath('/'))
+        dispatch(routeActions.push('/'))
       }
     },
     onSearchTextChange: (event) => {
-      dispatch(searchTextChanged(event.target.value))
+      if (event.target.value) {
+        dispatch(routeActions.replace('/search?q=' + event.target.value))
+      } else {
+        dispatch(routeActions.replace('/search'))
+      }
+      dispatch(searchTextChanged())
     },
     onSearchPageLoad: () => {
       dispatch(searchPageLoaded())
