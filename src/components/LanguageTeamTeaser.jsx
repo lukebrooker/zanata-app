@@ -4,37 +4,37 @@ import View from '../components/View'
 import Icon from '../components/Icon'
 // import { flattenClasses } from '../utils'
 
+const viewTheme = {
+  base: {
+    ai: 'Ai(c)',
+    fld: '',
+    m: 'Mb(rh)'
+  }
+}
+
 const LanguageTeamTeaser = ({
   children,
   details,
   ...props
 }) => {
-  const viewTheme = {
-    base: {
-      ai: 'Ai(c)',
-      fld: '',
-      m: 'Mb(rh)'
-    }
-  }
+  const org = details.org ? details.org : 'Zanata'
+  const orgIcon = details.org ? 'company' : 'zanata'
   return (
     <View theme={viewTheme}>
       <View theme={{ base: {fld: 'Fld(r)'} }}>
-        <Link to='/username/project-name'
+        <Link to={'/language/' + details.id}
           theme={{ base: { fw: 'Fw(600)' } }}>
           {details.locale}
         </Link>
         <span className='C(muted) Mstart(rq)'>
-          {details.localeCode}
+          {details.id}
         </span>
       </View>
-      <View
-        theme={{ base: { ai: 'Ai(c)', fld: '', m: 'Mstart(a)' } }}
-        MetaData
-      >
-        <Icon name='zanata'
+      <View theme={{ base: { ai: 'Ai(c)', fld: '', m: 'Mstart(a)' } }} >
+        <Icon name={orgIcon}
           theme={{ base: { c: 'C(muted)', m: 'Mend(rq)' } }}
         />
-      {details.org}
+        {org}
         <Icon name='users'
           theme={{
             base: {
@@ -43,7 +43,7 @@ const LanguageTeamTeaser = ({
             }
           }}
         />
-      {details.members}
+      {details.memberCount}
       </View>
     </View>
   )

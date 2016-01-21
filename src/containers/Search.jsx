@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { routeActions } from 'redux-simple-router'
-import { isEmpty } from 'lodash'
+import { isEmpty, values } from 'lodash'
 import { flattenClasses, canGoBack } from '../utils'
 import Page from '../components/Page'
 import ScrollView from '../components/ScrollView'
@@ -82,6 +82,12 @@ const contentViewContainerTheme = {
   }
 }
 
+const titles = {
+  project: 'Projects',
+  languageTeam: 'Language Teams',
+  person: 'People'
+}
+
 class Search extends Component {
   componentWillMount () {
     this.props.onSearchPageLoad()
@@ -91,10 +97,12 @@ class Search extends Component {
       onSearchCancelClick,
       onSearchTextChange,
       searchText,
-      searchResults = [],
+      searchData = {},
+      searchError,
+      searchLoading,
       ...props
     } = this.props
-    console.log(searchResults)
+    const searchEntities = searchData.entities || {}
     return (
       <Page>
         <Helmet title='Search' />
@@ -111,26 +119,35 @@ class Search extends Component {
               value={searchText}
               onChange={onSearchTextChange}
             />
-          <Button
-            theme={buttonTheme}
+            <Button
+              theme={buttonTheme}
             onClick={onSearchCancelClick}>
             Cancel
-          </Button>
+            </Button>
           </View>
         </header>
         <ScrollView theme={scrollViewTheme}>
           <View theme={contentViewContainerTheme}>
-            {isEmpty(searchResults)
-              ? (<div>No Results</div>)
-              : searchResults.map((list, key) => (
-                <TeaserList
-                  items={list.items}
-                  title={list.title}
-                  type={list.type}
-                  key={key}
-                  filterable={!searchText}
-                />
-              ))
+            {isEmpty(searchEntities)
+              ? searchLoading
+                ? (<div>Loading results…</div>)
+                : searchError
+                  ? (<p>
+                      Error completing search for "{searchText}".<br/>
+                      {searchData.message}. Please try again.
+                    </p>)
+                  : (<p>No Results</p>)
+              : Object.keys(searchEntities).map((type, key) =>
+                (
+                  <TeaserList
+                    items={values(searchEntities[type])}
+                    title={titles[type]}
+                    type={type}
+                    key={key}
+                    filterable={!searchText}
+                  />
+                )
+              )
             }
           </View>
         </ScrollView>
@@ -142,8 +159,10 @@ class Search extends Component {
 const mapStateToProps = (state) => {
   return {
     searchText: state.routing.location.query.q,
-    searchResults: state.routing.location.query.q
-      ? state.search.results : state.search.default
+    searchData: state.routing.location.query.q
+      ? state.search.data : state.search.default,
+    searchError: state.search.error,
+    searchLoading: state.search.loading
   }
 }
 

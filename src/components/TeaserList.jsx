@@ -3,7 +3,7 @@ import View from '../components/View'
 import TeaserListHeader from '../components/TeaserListHeader'
 import ProjectTeaser from '../components/ProjectTeaser'
 import LanguageTeamTeaser from '../components/LanguageTeamTeaser'
-import UserTeaser from '../components/UserTeaser'
+import PersonTeaser from '../components/PersonTeaser'
 // import { flattenClasses } from '../utils'
 
 const TeaserList = ({
@@ -26,20 +26,19 @@ const TeaserList = ({
     }
   }
   switch (type) {
-    case 'projects':
+    case 'project':
       TeaserComponent = ProjectTeaser
       break
-    case 'languageTeams':
+    case 'languageTeam':
       TeaserComponent = LanguageTeamTeaser
       break
-    case 'people':
-      TeaserComponent = UserTeaser
+    case 'person':
+      TeaserComponent = PersonTeaser
       break
     default:
       TeaserComponent = () => (<div>Teaser</div>)
       break
   }
-  // TODO: Replace static list with dynamic list
   return (items.length > 0) ? (
     <View theme={teaserListTheme}>
       <TeaserListHeader title={title} type={type} showFilter={filterable}/>

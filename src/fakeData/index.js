@@ -43,12 +43,11 @@ export class FakeProjectList extends FakeList {
   createFakeData (/* number */ index) /* object */ {
     const title = capitalize(faker.company.bs())
     return {
-      id: index,
+      id: faker.helpers.slugify(title).toLowerCase(),
       title: title,
-      slug: faker.helpers.slugify(title).toLowerCase(),
       description: faker.company.catchPhrase(),
-      username: faker.internet.userName().toLowerCase(),
-      contributors: random(3000)
+      owner: faker.internet.userName().toLowerCase(),
+      contributorCount: random(3000)
     }
   }
 
@@ -58,11 +57,10 @@ export class FakeLaguageTeamsList extends FakeList {
 
   createFakeData (/* number */ index) /* object */ {
     return {
-      id: index,
+      id: faker.address.countryCode(),
       locale: faker.address.country(),
-      localeCode: faker.address.countryCode(),
       org: faker.helpers.slugify(faker.company.companyName().toLowerCase()),
-      members: random(3000)
+      memberCount: random(3000)
     }
   }
 
@@ -72,9 +70,9 @@ export class FakeTranslatorsList extends FakeList {
 
   createFakeData (/* number */ index) /* object */ {
     return {
-      id: index,
-      avatar: faker.image.avatar(),
-      username: faker.internet.userName(),
+      id: faker.internet.userName().toLowerCase(),
+      description: faker.name.findName(),
+      avatarUrl: faker.image.avatar(),
       wordsTranslated: random(1000, 20000)
     }
   }
@@ -92,23 +90,11 @@ export default class FakeData {
   getItems (size) {
     size = size || this.size
     if (!this._cache[0] || this._cache[0].items.length < size) {
-      this._cache = [
-        {
-          title: 'Projects',
-          type: 'projects',
-          items: new FakeProjectList(size).getItems()
-        },
-        {
-          title: 'Language Teams',
-          type: 'languageTeams',
-          items: new FakeLaguageTeamsList(size).getItems()
-        },
-        {
-          title: 'People',
-          type: 'people',
-          items: new FakeTranslatorsList(size).getItems()
-        }
-      ]
+      this._cache = {
+        project: new FakeProjectList(size).getItems(),
+        languageTeam: new FakeLaguageTeamsList(size).getItems(),
+        person: new FakeTranslatorsList(size).getItems()
+      }
     }
     return this._cache
   }

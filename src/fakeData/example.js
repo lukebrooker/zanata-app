@@ -3,12 +3,7 @@ import FakeData from './index'
 const fakeData = new FakeData(50)
 const listData = fakeData.getItems()
 
-export const defaultData = listData.map(list => {
-  return {
-    ...list,
-    items: list.items.slice(0, 5)
-  }
-})
+export const defaultData = fakeData.getItems(5)
 
 function filterList (filterText) {
   const lowerText = filterText.toLowerCase()

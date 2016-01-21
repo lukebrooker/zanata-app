@@ -2,15 +2,16 @@ import { createStore, applyMiddleware, compose } from 'redux'
 // import DevTools from '../containers/DevTools'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
-import rootReducer from '../reducers'
 import { syncHistory } from 'redux-simple-router'
 import { browserHistory } from 'react-router'
+import api from '../middleware/api'
+import rootReducer from '../reducers'
 
 export const history = browserHistory
 export const routerMiddleware = syncHistory(history)
 
 const finalCreateStore = compose(
-  applyMiddleware(thunk),
+  applyMiddleware(thunk, api),
   applyMiddleware(routerMiddleware),
   applyMiddleware(createLogger()),
   // DevTools.instrument()
